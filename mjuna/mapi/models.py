@@ -21,10 +21,9 @@ TRAIN_TYPE = (
 
 
 class Station(models.Model):
-
     """Presentation of railway station"""
     title = models.CharField(max_length=100)
-    code = models.CharField(max_length=3, db_index=True)
+    code = models.CharField(max_length=10, db_index=True)
     latitude = models.DecimalField(max_digits=12, decimal_places=9)
     longitude = models.DecimalField(max_digits=12, decimal_places=9)
     timestamp = models.DateTimeField()
@@ -34,7 +33,6 @@ class Station(models.Model):
 
 
 class TrainInfo(models.Model):
-
     """Train moving on a map"""
     guid = models.CharField(max_length=20, unique=True)
     category = models.CharField(max_length=1)
@@ -48,6 +46,7 @@ class TrainInfo(models.Model):
     train_type = models.CharField(max_length=3, choices=TRAIN_TYPE)
     reason_code = models.TextField()
     timestamp = models.DateTimeField()
+
 
     def __unicode__(self):
         return "(%s)%s (%s -> %s)" % (self.guid, self.title, self.from_station, self.to_station)

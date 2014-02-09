@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from mapi.models import *
 import feedparser
 from mjuna.settings import STATION_FEED_URL
-import datetime
+import django.utils.timezone
 import urllib
 
 STATIONS = [
@@ -26,7 +26,7 @@ class Command(BaseCommand):
                     geoco = d.feed[u'georss_point'].split()
                     s.latitude = geoco[0]
                     s.longitude = geoco[1]
-                    s.timestamp = datetime.datetime.now()
+                    s.timestamp = django.utils.timezone.now()
                     s.save()
                 except KeyError:
                     print "Error for %s" % i

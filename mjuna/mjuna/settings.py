@@ -8,6 +8,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+#ignore the following error when using ipython:
+#/django/db/backends/sqlite3/base.py:50: RuntimeWarning:
+#SQLite received a naive datetime (2012-11-02 11:20:15.156506) while time zone support is active.
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -37,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     'mapi'
 )
 
