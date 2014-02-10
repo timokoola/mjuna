@@ -3,18 +3,18 @@ from django.forms import widgets
 from rest_framework import serializers
 
 
-class StationSerializer(serializers.ModelSerializer):
+class StationSerializer(serializers.HyperlinkedModelSerializer):
 
     """Serializer for Station objects"""
     class Meta:
         model = Station
-        fields = ('id', 'title', 'code', 'latitude', 'longitude', 'timestamp')
+        fields = ('url', 'title', 'code', 'latitude', 'longitude', 'timestamp')
 
 
-class TrainInfoSerializer(serializers.ModelSerializer):
+class TrainInfoSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = TrainInfo
         fields = (
-            'id', 'category', 'title', 'latitude', 'longitude', 'from_station',
+            'url', 'category', 'title', 'latitude', 'longitude', 'from_station',
             'to_station', 'status', 'heading', 'train_type', 'reason_code', 'timestamp')
