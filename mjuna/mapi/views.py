@@ -11,7 +11,9 @@ from rest_framework import viewsets
 
 from rest_framework.decorators import link
 
+
 class StationViewSet(viewsets.ModelViewSet):
+
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
@@ -23,13 +25,9 @@ class StationViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
-    @link(renderer_classes=[renderers.StaticHTMLRenderer])
-    def highlight(self, request, *args, **kwargs):
-        snippet = self.get_object()
-        return Response(snippet.highlighted)
-
 
 class TrainInfoViewSet(viewsets.ModelViewSet):
+
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
@@ -41,8 +39,12 @@ class TrainInfoViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
-    @link(renderer_classes=[renderers.StaticHTMLRenderer])
-    def highlight(self, request, *args, **kwargs):
-        snippet = self.get_object()
-        return Response(snippet.highlighted)
 
+class TrainStationInfoViewSet(viewsets.ModelViewSet):
+
+    """Information of a particular train as in relation
+    to a particular station"""
+    queryset = TrainStationInfo.objects.all()
+    serializer_class = TrainStationInfoSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
