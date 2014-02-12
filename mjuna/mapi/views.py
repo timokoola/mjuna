@@ -26,7 +26,7 @@ class StationViewSet(viewsets.ModelViewSet):
                           IsOwnerOrReadOnly,)
 
 
-class TrainInfoViewSet(viewsets.ModelViewSet):
+class RunningTrainViewSet(viewsets.ModelViewSet):
 
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -34,17 +34,17 @@ class TrainInfoViewSet(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = TrainInfo.objects.all()
-    serializer_class = TrainInfoSerializer
+    queryset = RunningTrain.objects.all()
+    serializer_class = RunningTrainSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
 
-class TrainStationInfoViewSet(viewsets.ModelViewSet):
+class RunningTrainStopInfoViewSet(viewsets.ModelViewSet):
 
     """Information of a particular train as in relation
     to a particular station"""
-    queryset = TrainStationInfo.objects.all()
-    serializer_class = TrainStationInfoSerializer
+    queryset = RunningTrainStopInfo.objects.all()
+    serializer_class = RunningTrainStopInfoSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)

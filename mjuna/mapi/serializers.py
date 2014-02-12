@@ -11,17 +11,17 @@ class StationSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'title', 'code', 'latitude', 'longitude', 'timestamp')
 
 
-class TrainInfoSerializer(serializers.HyperlinkedModelSerializer):
+class RunningTrainSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = TrainInfo
+        model = RunningTrain
         fields = (
-            'url', 'category', 'title', 'latitude', 'longitude', 'from_station',
+            'url', 'guid', 'category', 'title', 'latitude', 'longitude', 'from_station',
             'to_station', 'status', 'heading', 'train_type', 'reason_code', 'timestamp')
 
-class TrainStationInfoSerializer(serializers.HyperlinkedModelSerializer):
+class RunningTrainStopInfoSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = TrainStationInfo
+        model = RunningTrainStopInfo
         fields = (
             'train','guid','title','scheduledTime','scheduledDepartTime','eta','etd','station','completed','status','lateness','timestamp')

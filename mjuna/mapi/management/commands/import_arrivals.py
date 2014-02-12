@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.core.management.base import BaseCommand, CommandError
-from mapi.models import *
-import feedparser
-from mjuna.settings import STATION_FEED_URL
-import django.utils.timezone
-import urllib
+from mapi.importers import import_arrivals
 
+class CommandError(Exception):
+    pass
 
 class Command(BaseCommand):
     args = '<traing guid>'
-    help = 'Imports all stations and stores them to database'
+    help = 'Imports specific train arrivals or for specific trains if arguments'
 
     def handle(self, *args, **options):
         if args:
-            print "Hello continue here %s" % ",".join(args)
+            for train in args:
+                import_arrivals(train)
         else:
-            print "Hello"
+            raise CommandError
